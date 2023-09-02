@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import password_generator
 import getopt
 import random
 import string
@@ -30,48 +30,7 @@ def main(argv):
             nums = int(arg)
         elif opt in "-s":
             symbols = int(arg)
-    print(pwgen(words, caps, nums, symbols))
-
-
-def pwgen(words, caps, nums, symbols):
-    result = []
-
-    # open the words.txt file
-    f = open("words.txt", "r")
-
-    # lowercase words in an array
-    for line in f:
-        result.append(line.strip("\n").lower())
-
-    rand = random.choices(result, k=words)
-    rand.append("")
-
-    while caps > 0:
-        # add a check if it is already capitalized
-        wordr = random.choice(rand)
-        if wordr.lower() == wordr and wordr != "":
-            capitalwordr = wordr.capitalize()
-            rand.remove(wordr)
-            rand.append(capitalwordr)
-            caps -= 1
-
-    while nums > 0:
-        wordr = random.choice(rand)
-        rand.remove(wordr)
-        wordr += random.choice(string.digits)
-        rand.append(wordr)
-        nums -= 1
-
-    while symbols > 0:
-        wordr = random.choice(rand)
-        rand.remove(wordr)
-        wordr += random.choice(string.punctuation)
-        rand.append(wordr)
-        symbols -= 1
-    random.shuffle(rand)
-    pw = "".join(rand)
-    return pw
-
+    print(password_generator.pwgen(words, caps, nums, symbols))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
