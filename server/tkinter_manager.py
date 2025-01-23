@@ -1,6 +1,6 @@
 import tkinter.messagebox
 from tkinter import *
-import password_generator
+import server.server as server
 
 m = Tk()
 
@@ -35,10 +35,10 @@ def on_click():
     capitalized = capitalized_var.get()
     symbols = symbols_var.get()
 
-    if not password_generator.validate_pwgen(words, numbers, capitalized, symbols):
+    if not server.validate_pwgen(words, numbers, capitalized, symbols):
         tkinter.messagebox.showinfo("Error", "Invalid Input")
     else:
-        pw = password_generator.pwgen(words, numbers, capitalized, symbols)
+        pw = server.pwgen(words, numbers, capitalized, symbols)
         tkinter.messagebox.showinfo("Success", pw)
 
     words_var.set(0)

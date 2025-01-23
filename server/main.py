@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import password_generator
+import server.server as server
 import getopt
 import random
 import string
@@ -8,6 +8,7 @@ from typing import List
 
 
 def main(argv):
+    # Default
     words = 4
     caps = 0
     nums = 0
@@ -30,7 +31,7 @@ def main(argv):
             nums = int(arg)
         elif opt in "-s":
             symbols = int(arg)
-    print(password_generator.pwgen(words, caps, nums, symbols))
+    print(server.pwgen(words, caps, nums, symbols))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
